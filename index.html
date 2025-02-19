@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q3 Quiz2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      summary{
+        background-color: lightblue;
+      }  
+   
+      #name{
+        border: 3px solid gray;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      label, p{
+        font-weight: bold;
+        color: white;
+        font-family: Tahoma;
+      }
+      .row{
+        display: flex;
+      }
+      #ticket{
+        width: 800px;
+        height: 400px;
+      }
+      button{
+        font-family: Tahoma;
+      }
+      body{
+        background-image: url('https://d1ef7ke0x2i9g8.cloudfront.net/directories-hong-kong/11th-Philippine-International-Pyromusical-Competition-Landscape.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+      }
+      hr{
+        color: white;
+      }
+    </style>
+</head>
+
+<body>
+    <br>
+     <center>
+        <div class="col-md-6" style="background-color: #710ecc; color: white; font-family: Rockwell;">
+          <script>  
+          document.write("<h1>The 12th Philippine International Pyromusical Competition Ticketing Booth</h1>");
+          </script>
+        </div>
+      </center>
+      <hr>
+ 
+     <center>
+        <div class="col-md-6">
+          <details ontoggle="message1()">
+            <summary>
+              <b>Submit your details:</b>
+              <br>
+              <i id="message1"></i>
+            </summary>
+
+              <form>
+                  <br>
+                    <label>Name</label> 
+                        <input type="text" id="name" class="form-control" required > 
+                  <br>
+                    <label>Email</label> 
+                        <input type="email" id="name" class="form-control" required> 
+                  <br>     
+               
+                    <button type="button" class="btn btn-danger" onclick="info()"> SUBMIT INFO</button>
+              </form>
+
+             
+          </details>
+        </div>
+      </center>
+
+      <br>
+
+      <center>
+        <div class="col-md-6">
+          <details ontoggle="message2()">
+            <summary>
+              <b>Ticket Price</b>
+              <br>
+              <i id="message2"></i>
+            </summary>
+
+             <form>
+                  <br>
+                    <label>Choose your seat:</label> 
+                        <select class="form-select" id="seat">
+                            <option value="none">Select</option>
+                            <option value="3000">Patron (w/ Dinner)</option>
+                            <option value="1000">VIP</option>
+                            <option value="500">Gold</option>
+                            <option value="200">Silver</option>
+                        </select>
+                    <br>
+                    <label>Choose an option</label> 
+                        <select class="form-select" id="discount">
+                            <option value="none">Select</option>
+                            <option value="0.8">Senior/PWD/Student</option>
+                            <option value="0">Regular</option>
+                        </select>
+                    <br>
+                    <label>Choose the date you will watch:</label>
+                        <select class="form-select" id="discount">
+                            <option value="0222">February 22 (FRANCE | CHINA)</option>
+                            <option value="0301">March 01 (USA | GERMANY)</option>
+                            <option value="0308">March 08 (KOREA | UNITED KINGDOM)</option>
+                            <option value="0315">March 15 (CANADA | PHILIPPINES)</option>
+                        </select>
+
+                    <br><br>
+                    <button type="button" class="btn btn-danger" onclick="check_discount()"> TICKET PRICE </button>
+              </form>
+          </details>
+        </div>
+      </center>
+
+      <br>
+
+      <center>
+        <div class="col-md-6">
+          <details ontoggle="message3()">
+            <summary>
+              <b>Print the Ticket</b>
+              <br>
+              <i id="message3"></i>
+            </summary>
+            <br>
+         
+               <img src="data:image/png;base64,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" id="ticket">
+                <button type="button" class="btn btn-danger" onclick="print_ticket()"> PRINT YOUR TICKET</button>
+           
+              <br><br><br>
+             <a href="index.html"><button type="Submit" class="btn btn-info">Want more tickets? Visit us again! Note that ticket cut-off is every Saturday at 12nn.</button></a>
+          </details>
+        </div>
+        <hr>
+        <p>&copy; UNO MIGUEL</p>
+      </center>
+
+      <br>
+
+      
+
+      <script>
+        
+       function message1(){
+        document.getElementById('message1').innerHTML = "Fill out the form below."; 
+       }
+
+        function message2(){
+        document.getElementById('message2').innerHTML = "Check your ticket price."; 
+       }
+
+        function message3(){
+        document.getElementById('message3').innerHTML = "Select your ticket."; 
+       }
+
+       function print_ticket(){
+        window.alert('Check your email for your ticket. Thank you, and enjoy the show!');
+       }
+
+        function info(){
+        var name = document.getElementById('name').value;
+        
+        window.alert('Thanks ' + name + '! Proceed to the next section.');
+      }
+      
+        function check_discount(){
+
+          var seat = document.getElementById('seat').value;
+          var disc = document.getElementById('discount').value;   
+          var final_rate = seat - (disc * seat) ;
+
+          window.alert('Your ticket price is ' + final_rate + '. Proceed to the next section.');
+        }
+      </script>
+
+      
+</body>
+</html>
